@@ -1,7 +1,7 @@
-package com.sms.ums.models;
+package com.sms.ums.models.entities;
 
-import com.sms.api.model.entities.base.BasePersonEntity;
-import com.sms.api.model.entities.enums.ParentType;
+import com.sms.ums.models.entities.base.BasePersonEntity;
+import com.sms.ums.models.entities.enums.ParentType;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;

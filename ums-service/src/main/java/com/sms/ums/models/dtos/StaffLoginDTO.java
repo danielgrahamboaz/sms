@@ -1,6 +1,6 @@
-package com.sms.api.model.dtos;
+package com.sms.ums.models.dtos;
 
-import com.sms.api.model.entities.enums.Role;
+import com.sms.ums.models.entities.enums.Role;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

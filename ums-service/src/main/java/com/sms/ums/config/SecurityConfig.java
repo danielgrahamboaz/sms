@@ -1,6 +1,6 @@
-package com.sms.api.config;
+package com.sms.ums.config;
 
-import com.sms.api.model.entities.enums.Role;
+import com.sms.ums.models.entities.enums.Role;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -40,7 +40,6 @@ public class SecurityConfig {
                         authorize
                                 .requestMatchers("/api/**").permitAll()
                                 .requestMatchers("/api/auth/**").permitAll()
-                                .requestMatchers("/api/admission/**").hasAuthority(Role.ADMIN.name())
                                 .anyRequest().authenticated().and().formLogin().usernameParameter("username").passwordParameter("password").and().httpBasic();
                     } catch (Exception e) {
                         throw new RuntimeException(e);

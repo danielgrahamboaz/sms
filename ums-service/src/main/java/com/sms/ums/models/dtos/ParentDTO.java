@@ -1,10 +1,11 @@
-package com.sms.api.model.dtos;
+package com.sms.ums.models.dtos;
 
-import com.sms.api.model.dtos.base.PersonEntityDTO;
-import com.sms.api.model.entities.Parent;
-import com.sms.api.model.entities.enums.Gender;
-import com.sms.api.model.entities.enums.ParentType;
-import lombok.*;
+import com.sms.ums.models.entities.enums.Gender;
+import com.sms.ums.models.entities.enums.ParentType;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
 @Builder

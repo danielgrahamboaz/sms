@@ -1,0 +1,116 @@
+version: "3.7"
+services:
+  postgres-ums:
+    image: postgres:12.2-alpine
+    container_name: postgres-ums
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: ums
+      PGDATA: /data/postgres
+    ports:
+      - "5432:5432"
+    expose:
+      - "5432"
+    volumes:
+      - ./postgres-ums:/data/postgres
+    restart: always
+
+  mongo-cms:
+    image: mongo:4.2.3-bionic
+    container_name: mongo
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: password
+    ports:
+      - "27017:27017"
+    expose:
+      - "27017"
+    volumes:
+      - ./mongo-cms:/data/db
+    restart: always
+
+  ## Zipkin
+  zipkin:
+    image: openzipkin/zipkin
+    container_name: zipkin
+    ports:
+      - "9411:9411"
+
+  service-registry:
+    image: devdev22/sms-repo/service-registry:latest
+    container_name: service-registry
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
+    ports:
+      - "8761:8761"
+    expose:
+      - "8761"
+    depends_on:
+      - zipkin
+
+  config-server:
+    image: devdev22/sms-repo/config-server:latest
+    container_name: config-server
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
+    ports:
+      - "7777:7777"
+    expose:
+      - "7777"
+    depends_on:
+      - service-registry
+      - zipkin
+
+  api-gateway:
+    image: devdev22/sms-repo/api-gateway:latest
+    container_name: api-gateway
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
+      - LOGGING_LEVEL_ORG_SPRINGFRAMEWORK_SECURITY=TRACE
+    ports:
+      - "8080:8080"
+    expose:
+      - "8080"
+    depends_on:
+        - service-registry
+        - zipkin
+        - config-server
+
+  cms-service:
+    image: devdev22/sms-repo/cms-service:latest
+    container_name: cms-service
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
+    ports:
+      - "7070:7070"
+    expose:
+      - "7070"
+    depends_on:
+        - service-registry
+        - zipkin
+        - config-server
+        - mongo-cms
+
+  ums-service:
+    image: devdev22/sms-repo/ums-service:latest
+    container_name: ums-service
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres-ums:5432/ums
+    ports:
+      - "7071:7071"
+    expose:
+      - "7071"
+    depends_on:
+        - service-registry
+        - zipkin
+        - config-server
+        - postgres-ums
+
+
+
+
+
+
+

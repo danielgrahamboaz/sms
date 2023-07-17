@@ -1,8 +1,7 @@
-package com.sms.ums.models;
+package com.sms.ums.models.entities;
 
-import com.sms.api.model.entities.base.BasePersonEntity;
-import com.sms.api.model.entities.enums.Level;
 import com.sms.ums.models.entities.base.BasePersonEntity;
+import com.sms.ums.models.entities.enums.Level;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -24,11 +23,12 @@ public class Student extends BasePersonEntity {
     private LocalDate enrollDate;
 //    @OneToOne
 //    private Programme programme;
+    @Column(name = "programme_id")
+    private String programmeId;
     @Column(name = "date_of_birth")
     private String dateOfBirth;
     @Enumerated(EnumType.STRING)
     private Level level;
-    @OneToOne
-    @Enumerated(EnumType.STRING)
-    private Grade grade;
+    @Column(name = "grade_id")
+    private String gradeId;
 }

@@ -1,6 +1,6 @@
-package com.sms.api.repositories;
+package com.sms.ums.repositories;
 
-import com.sms.api.model.entities.UserEntity;
+import com.sms.ums.models.entities.UserEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

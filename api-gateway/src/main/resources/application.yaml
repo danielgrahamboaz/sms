@@ -1,0 +1,30 @@
+
+spring:
+  application:
+    name: api-gateway
+  config:
+    import: "optional:configserver:http://localhost:7777"
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+          lowerCaseServiceId: true
+      routes:
+        - id: cms-service
+          uri: lb://CMS-SERVICE
+          predicates:
+            - Path=/api/courses/**
+        - id: cms-service
+          uri: lb://CMS-SERVICE
+          predicates:
+            - Path=/api/grades/**
+        - id: cms-service
+          uri: lb://CMS-SERVICE
+          predicates:
+            - Path=/api/programmes/**
+        - id: ums
+          uri: lb://UMS-SERVICE
+          predicates:
+            - Path=/api/teachers/**
+      enabled: true

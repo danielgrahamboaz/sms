@@ -1,4 +1,4 @@
-package com.sms.api.model.entities.base;
+package com.sms.ums.models.entities.base;
 
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;

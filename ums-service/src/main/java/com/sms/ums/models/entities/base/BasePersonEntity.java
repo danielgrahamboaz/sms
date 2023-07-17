@@ -1,7 +1,7 @@
-package com.sms.api.model.entities.base;
+package com.sms.ums.models.entities.base;
 
-import com.sms.api.model.entities.UserEntity;
-import com.sms.api.model.entities.enums.Gender;
+import com.sms.ums.models.entities.UserEntity;
+import com.sms.ums.models.entities.enums.Gender;
 import jakarta.persistence.Column;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;

@@ -1,4 +1,4 @@
-package com.sms.ums.models;
+package com.sms.ums.models.entities;
 
 import com.sms.ums.models.entities.enums.Role;
 import jakarta.persistence.*;

@@ -1,15 +1,13 @@
-package com.sms.api.service;
+package com.sms.ums.service;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-import com.sms.api.model.dtos.UserRegisterDTO;
-import com.sms.api.model.entities.UserEntity;
-import com.sms.api.repositories.UserRepository;
+import com.sms.ums.models.dtos.UserRegisterDTO;
+import com.sms.ums.models.entities.UserEntity;
+import com.sms.ums.repositories.UserRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.json.JSONObject;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;

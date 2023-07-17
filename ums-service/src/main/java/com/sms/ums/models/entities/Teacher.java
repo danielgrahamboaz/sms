@@ -1,6 +1,6 @@
-package com.sms.ums.models;
+package com.sms.ums.models.entities;
 
-import com.sms.api.model.entities.base.BasePersonEntity;
+import com.sms.ums.models.entities.base.BasePersonEntity;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -14,8 +14,7 @@ import lombok.NoArgsConstructor;
 @Table(name = "teachers")
 @EqualsAndHashCode(callSuper = true)
 public class Teacher extends BasePersonEntity {
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "course_id", referencedColumnName = "id")
-    private Course course;
+    @Column(name = "course_id")
+    private String courseId;
     private String phoneNumber;
 }

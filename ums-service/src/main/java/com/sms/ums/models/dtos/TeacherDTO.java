@@ -1,7 +1,10 @@
-package com.sms.api.model.dtos;
+package com.sms.ums.models.dtos;
 
-import com.sms.api.model.entities.enums.Gender;
-import lombok.*;
+import com.sms.ums.models.entities.enums.Gender;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
 @Builder
@@ -14,5 +17,5 @@ public class TeacherDTO {
     private String address;
     private String phoneNumber;
     private Gender gender;
-    private int course_id;
+    private String course_id;
 }

@@ -1,4 +1,4 @@
-package com.sms.api.exceptions;
+package com.sms.ums.exceptions;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;

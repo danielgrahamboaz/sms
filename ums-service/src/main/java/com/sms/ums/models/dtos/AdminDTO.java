@@ -1,4 +1,4 @@
-package com.sms.api.model.dtos;
+package com.sms.ums.models.dtos;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

@@ -1,14 +1,10 @@
-package com.sms.api;
+package com.sms.ums;
 
-import com.sms.api.model.entities.Course;
-import com.sms.api.model.entities.Student;
-import com.sms.api.model.entities.Teacher;
-import com.sms.api.model.entities.UserEntity;
-import com.sms.api.model.entities.enums.Role;
-import com.sms.api.repositories.CourseRepository;
-import com.sms.api.repositories.StudentRepository;
-import com.sms.api.repositories.TeacherRepository;
-import com.sms.api.repositories.UserRepository;
+import com.sms.ums.models.entities.UserEntity;
+import com.sms.ums.models.entities.enums.Role;
+import com.sms.ums.repositories.StudentRepository;
+import com.sms.ums.repositories.TeacherRepository;
+import com.sms.ums.repositories.UserRepository;
 import jakarta.annotation.PostConstruct;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +12,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
 import java.util.Collections;
-import java.util.Optional;
 
 
 @Component
@@ -30,8 +25,8 @@ public class DBInit {
     private TeacherRepository teacherRepository;
     @Autowired
     private StudentRepository studentRepository;
-    @Autowired
-    private CourseRepository courseRepository;
+//    @Autowired
+//    private CourseRepository courseRepository;
 
     @PostConstruct
     public void postConstruct() {

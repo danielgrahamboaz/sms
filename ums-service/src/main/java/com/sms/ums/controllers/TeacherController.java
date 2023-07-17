@@ -1,16 +1,16 @@
-package com.sms.api.controllers;
+package com.sms.ums.controllers;
 
-import com.sms.api.model.dtos.TeacherDTO;
-import com.sms.api.model.dtos.UserRegisterDTO;
-import com.sms.api.model.entities.Course;
-import com.sms.api.model.entities.Teacher;
-import com.sms.api.model.entities.enums.Role;
-import com.sms.api.repositories.CourseRepository;
-import com.sms.api.repositories.TeacherRepository;
-import com.sms.api.service.AuthService;
+import com.sms.ums.clients.CourseClient;
+import com.sms.ums.models.dtos.CourseDTO;
+import com.sms.ums.models.dtos.TeacherDTO;
+import com.sms.ums.models.dtos.TeacherResponse;
+import com.sms.ums.models.entities.Teacher;
+import com.sms.ums.models.entities.enums.Role;
+import com.sms.ums.repositories.TeacherRepository;
+import com.sms.ums.service.AuthService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.BeanUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -28,7 +28,9 @@ import java.util.Set;
 @Slf4j
 public class TeacherController {
     private final TeacherRepository teacherRepository;
-    private final CourseRepository courseRepository;
+//    private final CourseRepository courseRepository;
+    @Autowired
+    private final CourseClient courseClient;
     private final AuthService authService;
 
     @GetMapping("")
@@ -66,29 +68,33 @@ public class TeacherController {
             teacher.setAddress(teacherDTO.getAddress());
             teacher.setPhoneNumber(teacherDTO.getPhoneNumber());
 
-            teacher.setUserName(teacherDTO.getFirstName() + "" + teacherDTO.getLastName());
+            teacher.setUserName(teacherDTO.getFirstName() + teacherDTO.getLastName());
             teacher.setPassword(passwordEncoder.encode(teacher.getLastName()));
 
             Set<Role> roles = new HashSet<>();
             roles.add(Role.TEACHER);
             teacher.setRole(roles);
 
-            Course course = courseRepository.findById((long) teacherDTO.getCourse_id()).orElse(null);
+//            Course course = courseRepository.findById((long) teacherDTO.getCourse_id()).orElse(null);
+            CourseDTO course = courseClient.getCourseById(teacherDTO.getCourse_id());
 
             if (course == null) {
                 return ResponseEntity.badRequest().body("Course can't be null");
             }
 
-            teacher.setCourse(course);
+            teacher.setCourseId(course.getId());
 
-            var response = authService.registerToChatEngine(teacher.getUsername(), teacher.getPassword(), teacher.getEmail(), teacher.getFirstName(), teacher.getLastName());
+//            var response = authService.registerToChatEngine(teacher.getUsername(), teacher.getPassword(), teacher.getEmail(), teacher.getFirstName(), teacher.getLastName());
 
-            if (response == null) {
-                log.error("Error while registering Teacher to chat engine");
-                return new ResponseEntity<>("Error while registering to chat engine", HttpStatus.INTERNAL_SERVER_ERROR);
-            }
+//            if (response == null) {
+//                log.error("Error while registering Teacher to chat engine");
+//                return new ResponseEntity<>("Error while registering to chat engine", HttpStatus.INTERNAL_SERVER_ERROR);
+//            }
+            var savedTeacher = teacherRepository.save(teacher);
 
-            return ResponseEntity.ok(Map.of("teacher", teacherRepository.save(teacher), "chats", response));
+            var teacherData = TeacherResponse.builder().id(savedTeacher.getId()).firstName(savedTeacher.getFirstName()).lastName(savedTeacher.getLastName()).email(savedTeacher.getEmail()).gender(savedTeacher.getGender()).phoneNumber(savedTeacher.getPhoneNumber()).course(course).address(savedTeacher.getAddress()).build();
+
+            return ResponseEntity.ok(Map.of("teacher", teacherData));
         } catch (Exception e) {
             System.err.println(e.getMessage());
             return ResponseEntity.badRequest().body(e.getMessage());

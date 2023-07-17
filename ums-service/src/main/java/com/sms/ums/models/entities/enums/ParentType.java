@@ -1,4 +1,4 @@
-package com.sms.api.model.entities.enums;
+package com.sms.ums.models.entities.enums;
 
 public enum ParentType {
     FATHER,
