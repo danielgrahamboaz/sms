@@ -53,7 +53,7 @@ services:
     image: devdev22/config-server:latest
     container_name: config-server
     environment:
-      - SPRING_PROFILES_ACTIVE=docker
+      - SPRING_PROFILES_ACTIVE=native
     ports:
       - "7777:7777"
     expose:
