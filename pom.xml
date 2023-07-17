@@ -64,7 +64,7 @@
               <image>eclipse-temurin:17.0.4.1_1-jre</image>
             </from>
             <to>
-              <image>devdev22/sms-repo/${project.artifactId}</image>
+              <image>devdev22/${project.artifactId}</image>
             </to>
             <auth>
               <username>${env.REGISTRY_USERNAME}</username>

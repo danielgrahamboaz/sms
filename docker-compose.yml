@@ -38,7 +38,7 @@ services:
       - "9411:9411"
 
   service-registry:
-    image: devdev22/sms-repo/service-registry:latest
+    image: devdev22/service-registry:latest
     container_name: service-registry
     environment:
       - SPRING_PROFILES_ACTIVE=docker
@@ -50,7 +50,7 @@ services:
       - zipkin
 
   config-server:
-    image: devdev22/sms-repo/config-server:latest
+    image: devdev22/config-server:latest
     container_name: config-server
     environment:
       - SPRING_PROFILES_ACTIVE=docker
@@ -63,7 +63,7 @@ services:
       - zipkin
 
   api-gateway:
-    image: devdev22/sms-repo/api-gateway:latest
+    image: devdev22/api-gateway:latest
     container_name: api-gateway
     environment:
       - SPRING_PROFILES_ACTIVE=docker
@@ -78,7 +78,7 @@ services:
         - config-server
 
   cms-service:
-    image: devdev22/sms-repo/cms-service:latest
+    image: devdev22/cms-service:latest
     container_name: cms-service
     environment:
       - SPRING_PROFILES_ACTIVE=docker
@@ -93,7 +93,7 @@ services:
         - mongo-cms
 
   ums-service:
-    image: devdev22/sms-repo/ums-service:latest
+    image: devdev22/ums-service:latest
     container_name: ums-service
     environment:
       - SPRING_PROFILES_ACTIVE=docker
