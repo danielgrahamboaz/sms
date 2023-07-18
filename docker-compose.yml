@@ -27,7 +27,7 @@ services:
     expose:
       - "8091"
     volumes:
-      - ./mongo-cms:/data/db
+      - ./mongo-data:/data/db
     restart: always
 
   ## Zipkin
@@ -90,7 +90,7 @@ services:
         - service-registry
         - zipkin
         - config-server
-        - mongo-cms
+        - mongo
 
   ums-service:
     image: devdev22/ums-service:latest
