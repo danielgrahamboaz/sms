@@ -9,9 +9,9 @@ services:
       POSTGRES_DB: ums
       PGDATA: /data/postgres
     ports:
-      - "5432:5432"
+      - "5431:5432"
     expose:
-      - "5432"
+      - "5431"
     volumes:
       - ./postgres-ums:/data/postgres
     restart: always
@@ -23,9 +23,9 @@ services:
       MONGO_INITDB_ROOT_USERNAME: root
       MONGO_INITDB_ROOT_PASSWORD: password
     ports:
-      - "8091:27017"
+      - "8092:27017"
     expose:
-      - "8091"
+      - "8092"
     volumes:
       - ./mongo-data:/data/db
     restart: always
@@ -99,7 +99,7 @@ services:
       - SPRING_PROFILES_ACTIVE=docker
       - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres-ums:5432/ums
       - SPRING_DATASOURCE_USERNAME=postgres
-      - SPRING_DATASOURCE_PASSWORD=root
+      - SPRING_DATASOURCE_PASSWORD=password
     ports:
       - "7071:7071"
     expose:

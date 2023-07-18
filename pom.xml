@@ -66,10 +66,6 @@
             <to>
               <image>devdev22/${project.artifactId}</image>
             </to>
-            <auth>
-              <username>${env.REGISTRY_USERNAME}</username>
-              <password>${env.REGISTRY_PASSWORD}</password>
-            </auth>
 <!--            <skip>${skip-docker-image}</skip>-->
           </configuration>
           <executions>
