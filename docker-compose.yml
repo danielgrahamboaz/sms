@@ -16,16 +16,16 @@ services:
       - ./postgres-ums:/data/postgres
     restart: always
 
-  mongo-cms:
+  mongo:
     image: mongo:4.2.3-bionic
     container_name: mongo
     environment:
       MONGO_INITDB_ROOT_USERNAME: root
       MONGO_INITDB_ROOT_PASSWORD: password
     ports:
-      - "27017:27017"
+      - "8091:27017"
     expose:
-      - "27017"
+      - "8091"
     volumes:
       - ./mongo-cms:/data/db
     restart: always
