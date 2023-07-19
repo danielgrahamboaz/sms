@@ -19,7 +19,7 @@ public class WebClientConfig {
     @Bean
     public WebClient gradeWebClient() {
         return WebClient.builder()
-                .baseUrl("http://cms-service")
+                .baseUrl("http://cms-service:7070")
                 .filter(filterFunction)
                 .build();
     }

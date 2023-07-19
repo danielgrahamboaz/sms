@@ -12,19 +12,23 @@ spring:
           lowerCaseServiceId: true
       routes:
         - id: cms-service
-          uri: lb://CMS-SERVICE
+          uri: http://cms-service:7070
           predicates:
             - Path=/api/courses/**
         - id: cms-service
-          uri: lb://CMS-SERVICE
+          uri: http://cms-service:7070
           predicates:
             - Path=/api/grades/**
         - id: cms-service
-          uri: lb://CMS-SERVICE
+          uri: http://cms-service:7070
           predicates:
             - Path=/api/programmes/**
         - id: ums
-          uri: lb://UMS-SERVICE
+          uri: http://ums-service:7071
           predicates:
             - Path=/api/teachers/**
+        - id: ums
+          uri: http://ums-service:7071
+          predicates:
+            - Path=/api/auth/**
       enabled: true

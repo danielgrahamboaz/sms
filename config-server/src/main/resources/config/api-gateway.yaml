@@ -3,11 +3,11 @@ server:
 
 eureka:
   instance:
-    hostname: service-registry
+    hostname: localhost
+    prefer-ip-address: true
   client:
     serviceUrl:
       defaultZone: http://service-registry:8761/eureka/
-
 
 management:
   tracing:
