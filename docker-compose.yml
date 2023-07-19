@@ -16,9 +16,9 @@ services:
       - ./postgres-ums:/data/postgres
     restart: always
 
-  mongo:
+  mongo-cms:
     image: mongo:4.2.3-bionic
-    container_name: mongo
+    container_name: mongo-cms
     ports:
       - "8092:27017"
     expose:
@@ -87,7 +87,7 @@ services:
         - service-registry
         - zipkin
         - config-server
-        - mongo
+        - mongo-cms
 
   ums-service:
     image: devdev22/ums-service:latest
