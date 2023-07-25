@@ -87,12 +87,20 @@ public class CourseService {
 
     }
 
-    public Set<Course> getCourses() {
-        Set<Course> courses = new HashSet<>(courseRepository.findAll());
+    public Set<CourseResponse> getCourses() {
+        Set<CourseResponse> courseResponses = new HashSet<>();
 
-        log.info("Courses: {}", courses);
+        courseRepository.findAll().forEach(course -> {
+            courseResponses.add(CourseResponse.builder()
+                    .id(course.getId())
+                    .name(course.getName())
+                    .description(course.getDescription())
+                    .grades(course.getGrades())
+                    .programme(programmeRepository.findById(course.getProgrammeId()).orElse(null))
+                    .build());
+        });
 
-        return courses;
+        return courseResponses;
     }
 
     public CourseResponse getCourseById(String id) {

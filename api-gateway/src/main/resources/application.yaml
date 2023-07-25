@@ -10,6 +10,12 @@ spring:
         locator:
           enabled: true
           lowerCaseServiceId: true
+      globalcors:
+        corsConfigurations:
+          '[/**]':
+            allowedOrigins: "*"
+            allowedMethods: "*"
+            allowedHeaders: "*"
       routes:
         - id: cms-service
           uri: lb://CMS-SERVICE
@@ -27,4 +33,10 @@ spring:
           uri: lb://UMS-SERVICE
           predicates:
             - Path=/api/teachers/**
+        - id: ums
+          uri: lb://UMS-SERVICE
+          predicates:
+              - Path=/api/auth/**
       enabled: true
+      default-filters:
+        DedupeResponseHeader=Access-Control-Allow-Origin Access-Control-Allow-Credentials

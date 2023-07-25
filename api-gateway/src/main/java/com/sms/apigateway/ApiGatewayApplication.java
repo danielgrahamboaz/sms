@@ -10,7 +10,7 @@ import reactor.netty.http.client.HttpClient;
 @SpringBootApplication
 @EnableDiscoveryClient
 public class ApiGatewayApplication {
-
+//
 	@Bean
 	public HttpClient httpClient() {
 		return HttpClient.create().resolver(DefaultAddressResolverGroup.INSTANCE);

@@ -21,7 +21,7 @@ public class CourseController {
 
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
-    public Set<Course> getCourses() {
+    public Set<CourseResponse> getCourses() {
         return courseService.getCourses();
     }
 
